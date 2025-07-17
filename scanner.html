@@ -1,0 +1,130 @@
+.scanner-page {
+  padding: 20px;
+  background-color: #fffaf6;
+  font-family: 'Arial', sans-serif;
+}
+.preview-container {
+  margin-top: 20px;
+  text-align: center;
+}
+#previewImage {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.item-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+.item-card {
+  width: 160px;
+  background: #ffe6f0;
+  padding: 10px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.item-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+.item-card a {
+  display: block;
+  margin-top: 5px;
+  color: #ff4081;
+  font-weight: bold;
+  text-decoration: none;
+}.scanner-page {
+  padding: 20px;
+  background-color: #fffaf6;
+  font-family: 'Arial', sans-serif;
+}
+.preview-container {
+  margin-top: 20px;
+  text-align: center;
+}
+#previewImage {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.item-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+.item-card {
+  width: 160px;
+  background: #ffe6f0;
+  padding: 10px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.item-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+.item-card a {
+  display: block;
+  margin-top: 5px;
+  color: #ff4081;
+  font-weight: bold;
+  text-decoration: none;
+}
+document.getElementById("imageUpload").addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function () {
+    const previewImage = document.getElementById("previewImage");
+    previewImage.src = reader.result;
+
+    // Simulate item recognition & show results
+    showFakeResults();
+  };
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+});
+
+function showFakeResults() {
+  const results = document.getElementById("itemResults");
+  results.innerHTML = "";
+
+  const items = [
+    {
+      name: "Beige Trench Coat",
+      image: "https://images.unsplash.com/photo-1542068829-1115f7259450?fit=crop&w=300&q=80",
+      link: "https://example.com/trench-coat"
+    },
+    {
+      name: "Black Leather Boots",
+      image: "https://images.unsplash.com/photo-1519741491158-3a0b62f2b2bb?fit=crop&w=300&q=80",
+      link: "https://example.com/leather-boots"
+    },
+    {
+      name: "Brown Crossbody Bag",
+      image: "https://images.unsplash.com/photo-1602810311133-d3f39e79a8a6?fit=crop&w=300&q=80",
+      link: "https://example.com/bag"
+    }
+  ];
+
+  items.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "item-card";
+    card.innerHTML = `
+      <img src="${item.image}" alt="${item.name}" />
+      <p>${item.name}</p>
+      <a href="${item.link}" target="_blank">Buy Now</a>
+    `;
+    results.appendChild(card);
+  });
+}
+
